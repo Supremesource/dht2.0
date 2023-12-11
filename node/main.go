@@ -15,25 +15,10 @@ import (
 	pubsub "github.com/libp2p/go-libp2p-pubsub"
 
 	"time"
-	"commune_chat/node"
+	"commune_chat/src"
 	"github.com/sirupsen/logrus"
 )
 
-const figlet = `
- ██████╗ ██████╗ ███╗   ███╗███╗   ███╗██╗   ██╗███╗   ██╗███████╗
-██╔════╝██╔═══██╗████╗ ████║████╗ ████║██║   ██║████╗  ██║██╔════╝
-██║     ██║   ██║██╔████╔██║██╔████╔██║██║   ██║██╔██╗ ██║█████╗  
-██║     ██║   ██║██║╚██╔╝██║██║╚██╔╝██║██║   ██║██║╚██╗██║██╔══╝  
-╚██████╗╚██████╔╝██║ ╚═╝ ██║██║ ╚═╝ ██║╚██████╔╝██║ ╚████║███████╗
- ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝
-                                                                  
- ██████╗██╗  ██╗ █████╗ ████████╗                                 
-██╔════╝██║  ██║██╔══██╗╚══██╔══╝                                 
-██║     ███████║███████║   ██║                                    
-██║     ██╔══██║██╔══██║   ██║                                    
-╚██████╗██║  ██║██║  ██║   ██║                                    
- ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝                                                                                                                             																																																												  
-`
 
 func init() {
 	// Log as Text with color
@@ -79,11 +64,11 @@ func main() {
 	fmt.Println()
 
 	// Create a new P2PHost
-	p2phost := node.NewP2P()
+	p2phost := src.NewP2P()
 	fmt.Printf("%+v\n", p2phost)
 
 	// Join the chat room
-	chatapp, _ := node.JoinChatRoom(p2phost, *username, *chatroom)
+	chatapp, _ := src.JoinChatRoom(p2phost, *username, *chatroom)
 	logrus.Infof("Joined the '%s' chatroom as '%s'", chatapp.RoomName, chatapp.UserName)
 
 	chatapp.IP = *ip // placeholder IP
@@ -97,6 +82,8 @@ func main() {
             fmt.Print("\nNew message: \n", msg.Message, "\n")
 			fmt.Print("\nIP: ", msg.IP, "\n")
 			fmt.Print("\nPort: ", msg.Port, "\n")
+			fmt.Print("\nUser: ", msg.SenderID}")
+
 			
 
         }

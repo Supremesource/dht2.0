@@ -110,4 +110,4 @@ require (
 	golang.org/x/text v0.3.6 // indirect
 )
 
-replace commune_chat/node => /home/johny/test_projects/peerchat/node
+replace commune_chat/src => /home/johny/test_projects/peerchat/src
